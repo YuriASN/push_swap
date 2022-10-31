@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:28 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/31 15:32:59 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/10/31 22:54:37 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	error_print(char **st_a, char **st_b)
 /* Check if the arguments received (except 1st 
 as it is the name of the proogram) are all alphanumerics.
 Then it converts the argument to int and save it on the stack */
-static int	arg_check(char **args, int max, int **stack)
+static int	arg_check(char **args, int max, int *stack)
 {
 	int	i;
 	int	j;
@@ -58,6 +58,6 @@ int	main(int argc, char *argv[])
 		exit(0);
 	if (!arg_check(**argv, argc, stack_a))
 		return (error_print(stack_a, stack_b));
-	get_order(argc - 2, stack_a, stack_b);
+	get_order(stack_a, stack_b);
 	return (0);
 }

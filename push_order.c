@@ -6,47 +6,59 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:07:21 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/31 15:42:10 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/10/31 22:54:29 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	check1(int **st_a, int **st_b)
+static int	check1(int *st_a, int *st_b)
 {
 	if (!st_b[0])
-		ft_printf("pb\npb\n");
+		return (push_b(st_a, st_b), push_b(st_a, st_b));
 	if (st_a[0] > st_a[1] && st_a[0] > st_b[1])
-		return (ft_printf("ss\n"));
+		return (swap_both(st_a, st_b));
 	else if (st_a[0] > st_a[1])
-		return (ft_printf("sa\n"));
+		return (swap_a(st_a, 1));
 	else if (st_b[0] > st_b[1])
-		return (ft_printf("sb\n"));
+		return (swap_b(st_b, 1));
 	if (st_a[0] >= st_a[get_last(st_a)] && st_b[0] >= st_b[get_last(st_b)])
-		return (ft_printf("rrr\n"));
+		return (rotate_back_both(st_a, st_b));
 	else if (st_a[0] >= st_a[get_last(st_a)])
-		return (ft_printf("rra\n"));
+		return (rotate_back_a(st_a, 1));
 	else if (st_b[0] >= st_b[get_last(st_b)])
-		return (ft_printf("rrb\n"));
+		return (rotate_back_b(st_b, 1));
 	return (0);
 }
 
-static int	check2(int **st_a, int **st_b)
+static int	check2(int *st_a, int *st_b)
 {
 	if (st_a[0] == st_b[0] - 1)
-		return (ft_printf("rb\npb\nrrb\n"));
+		return (rotate_b(st_b, 1), push_b(st_a, st_b), rotate_back_b(st_b, 1));
 	else if (st_a[0] == st_b[0] + 1)
-		return (ft_printf("pb\n"));
+		return (push_b(st_a, st__b));
 	else if (st_a[0] == st_b[get_last(st_b)] + 1)
-		return (ft_printf("pb\nrb\n"));
+		return (push_b(st_a, st_b), rotate_b(st_b, 1));
 	else if (st_a[0] == st_b[get_last(st_b)] - 1)
-		return (ft_printf("rrb\npb\nrb\nrb\n"));
-	while ((st_a[0] < st_b[get_last(st_b)]))
-		return (ft_printf("pb\nrb\n"));
+	{
+		rotate_back_b(st_b, 1);
+		return (push_b(st_a, st_b), rotate_b(st_b, 1), rotate_b(st_b, 1));
+	}
+	if ((st_a[0] < st_b[get_last(st_b)]))
+	{
+		while ((st_a[0] < st_b[get_last(st_b)]))
+		{
+			push_b(st_a, st_b);
+			rotate_b(st_b, 1);
+		}
+		return (1);
+	}		
 	return (0);
 }
 
-void	get_order(int **stack_a, int **stack_b)
+/* Start process of what todo in different conditions.
+If any changes are made it starts to check all over again. */
+void	get_order(int *stack_a, int *stack_b)
 {
 	while (!check_order(stack_a) || !check_order_r(stack_b))
 	{
