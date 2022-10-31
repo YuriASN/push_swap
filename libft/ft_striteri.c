@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/29 19:23:03 by ysantos-         ###   ########.fr       */
+/*   Created: 2022/03/24 21:47:13 by ysantos-          #+#    #+#             */
+/*   Updated: 2022/04/24 02:35:26 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+/* Applies the function 'f' on each char of the string passed as argument,
+passing its index as 1st argument.
+Each char is passed by address to 'f' to be modified if necessary. */
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include "ft_printf/ft_printf.h"
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	unsigned int	i;
 
-void	get_order(int *stack_a, int *stack_b);
-int		check_order(int *stack);
-int		get_last(int *stack);
-int		check_order_r(int **stack);
-
-#endif
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		++i;
+	}
+}

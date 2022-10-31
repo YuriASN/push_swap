@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/29 19:23:03 by ysantos-         ###   ########.fr       */
+/*   Created: 2022/03/25 21:29:10 by ysantos-          #+#    #+#             */
+/*   Updated: 2022/03/27 15:05:59 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include "ft_printf/ft_printf.h"
+/* Allocates with malloc and return a new node.
+The member variable 'content' is initialized with
+the value of the parameter 'content'.
+The variable 'next' is initialized to NULL */
 
-void	get_order(int *stack_a, int *stack_b);
-int		check_order(int *stack);
-int		get_last(int *stack);
-int		check_order_r(int **stack);
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new;
 
-#endif
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (0);
+	new->content = content;
+	new->next = NULL;
+	return (new);
+}

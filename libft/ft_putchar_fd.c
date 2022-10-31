@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/29 19:23:03 by ysantos-         ###   ########.fr       */
+/*   Created: 2022/03/24 21:52:33 by ysantos-          #+#    #+#             */
+/*   Updated: 2022/03/28 20:28:16 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include "ft_printf/ft_printf.h"
+/* Outputs the char 'c' to the given file descriptor */
 
-void	get_order(int *stack_a, int *stack_b);
-int		check_order(int *stack);
-int		get_last(int *stack);
-int		check_order_r(int **stack);
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

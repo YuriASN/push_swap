@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/29 19:23:03 by ysantos-         ###   ########.fr       */
+/*   Created: 2022/02/24 20:31:38 by ysantos-          #+#    #+#             */
+/*   Updated: 2022/03/13 19:39:28 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include "ft_printf/ft_printf.h"
+//Count the bytes of a string. Does NOT include the null char
 
-void	get_order(int *stack_a, int *stack_b);
-int		check_order(int *stack);
-int		get_last(int *stack);
-int		check_order_r(int **stack);
+size_t	ft_strlen(const char *str)
+{
+	int	count;
 
-#endif
+	count = 0;
+	while (str[count])
+		++count;
+	return (count);
+}
+
+/* int	main(void)
+{
+	char	*str;
+
+	str = "123456789";
+	printf("%d\n", ft_strlen(str));
+	return (0);
+} */

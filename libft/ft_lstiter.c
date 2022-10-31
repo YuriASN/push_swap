@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/29 19:23:03 by ysantos-         ###   ########.fr       */
+/*   Created: 2022/03/27 17:28:48 by ysantos-          #+#    #+#             */
+/*   Updated: 2022/03/27 17:44:23 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include "ft_printf/ft_printf.h"
+/* Iterates the list ’lst’ and applies the function
+’f’ on the content of each node. */
 
-void	get_order(int *stack_a, int *stack_b);
-int		check_order(int *stack);
-int		get_last(int *stack);
-int		check_order_r(int **stack);
-
-#endif
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	if (!lst || !f)
+		return ;
+	if (lst->next)
+		ft_lstiter(lst->next, f);
+	f(lst->content);
+}
