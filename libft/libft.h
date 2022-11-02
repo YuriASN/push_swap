@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 19:15:32 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/06/05 20:05:37 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/02 20:28:45 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 # include <string.h>
 # include <sys/types.h>
 # include <sys/stat.h>

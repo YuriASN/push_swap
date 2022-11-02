@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:53:03 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/31 22:55:20 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/02 20:18:05 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	swap_a(int *st_a, int print)
 
 	tmp = st_a[1];
 	st_a[1] = st_a[0];
-	st_a[0] = st_a[1];
+	st_a[0] = tmp;
 	if (print)
 		ft_printf("sa\n");
 	return (1);
@@ -34,7 +34,7 @@ int	swap_b(int *st_b, int print)
 
 	tmp = st_b[1];
 	st_b[1] = st_b[0];
-	st_b[0] = st_b[1];
+	st_b[0] = tmp;
 	if (print)
 		ft_printf("sb\n");
 	return (1);

@@ -6,11 +6,11 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 20:59:44 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/09/29 21:13:22 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/02 20:26:23 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	f_putnbr(int n)
 {

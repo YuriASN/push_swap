@@ -6,11 +6,11 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 20:16:04 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/06/05 21:50:01 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/02 20:23:53 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static int	f_putchar(char c)
 {

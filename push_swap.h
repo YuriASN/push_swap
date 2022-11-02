@@ -6,17 +6,14 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/31 22:58:05 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/02 20:28:24 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include "ft_printf/ft_printf.h"
+# include "libft/libft.h"
 
 void	get_order(int *stack_a, int *stack_b);
 int		check_order(int *stack);

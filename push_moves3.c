@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 22:46:10 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/31 22:57:53 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:50:54 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	rotate_back_both(int *st_a, int *st_b)
 
 void	b_to_a(int *st_a, int *st_b)
 {
-	while (*st_b[0])
-		push_a(st_a, st_b)
+	while (st_b[0])
+		push_a(st_a, st_b);
 }

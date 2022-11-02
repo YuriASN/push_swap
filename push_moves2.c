@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 22:14:50 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/10/31 22:55:03 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/02 20:12:45 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	rotate_b(int *st_b, int print)
 
 	i = -1;
 	tmp = st_b[0];
-	while (++i < get_last(st_a))
+	while (++i < get_last(st_b))
 	{
 		st_b[i] = st_b[i + 1];
 	}
@@ -63,7 +63,17 @@ int	rotate_both(int *st_a, int *st_b)
 The last element becomes the first one. */
 int	rotate_back_a(int *st_a, int print)
 {
+	int	i;
+	int	tmp;
 
+	i = get_last(st_a);
+	tmp = st_a[i];
+	while (i > 0)
+	{
+		st_a[i] = st_a[i - 1];
+		i--;
+	}
+	st_a[i] = tmp;
 	if (print)
 		ft_printf("rra\n");
 	return (1);
@@ -73,6 +83,17 @@ int	rotate_back_a(int *st_a, int print)
 The last element becomes the first one. */
 int	rotate_back_b(int *st_b, int print)
 {
+	int	i;
+	int	tmp;
+
+	i = get_last(st_b);
+	tmp = st_b[i];
+	while (i > 0)
+	{
+		st_b[i] = st_b[i - 1];
+		i--;
+	}
+	st_b[i] = tmp;
 	if (print)
 		ft_printf("rrb\n");
 	return (1);
