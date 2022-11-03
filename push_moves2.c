@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 22:14:50 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/02 20:12:45 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/03 21:27:53 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ int	rotate_a(int *st_a, int print)
 		st_a[i] = st_a[i + 1];
 	}
 	st_a[i] = tmp;
-	if (print)
+	if (print){
 		ft_printf("ra\n");
+	int i= -1;
+	while (st_a[++i])
+		ft_printf("%i\tx\n", st_a[i]);}
 	return (1);
 }
 
@@ -45,8 +48,11 @@ int	rotate_b(int *st_b, int print)
 		st_b[i] = st_b[i + 1];
 	}
 	st_b[i] = tmp;
-	if (print)
+	if (print){
 		ft_printf("rb\n");
+	int i= -1;
+	while (st_b[++i])
+		ft_printf("x\t%i\n", st_b[i]);}
 	return (1);
 }
 
@@ -56,6 +62,9 @@ int	rotate_both(int *st_a, int *st_b)
 	rotate_a(st_a, 0);
 	rotate_b(st_b, 0);
 	ft_printf("rr\n");
+	int i= -1;
+	while (st_a[++i] || st_b[i])
+		ft_printf("%i\t%i\n", st_a[i], st_b[i]);
 	return (1);
 }
 
@@ -74,8 +83,11 @@ int	rotate_back_a(int *st_a, int print)
 		i--;
 	}
 	st_a[i] = tmp;
-	if (print)
+	if (print){
 		ft_printf("rra\n");
+	int i= -1;
+	while (st_a[++i])
+		ft_printf("%i\tx\n", st_a[i]);}
 	return (1);
 }
 
@@ -94,7 +106,10 @@ int	rotate_back_b(int *st_b, int print)
 		i--;
 	}
 	st_b[i] = tmp;
-	if (print)
+	if (print){
 		ft_printf("rrb\n");
+	int i= -1;
+	while (st_b[++i])
+		ft_printf("x\t%i\n", st_b[i]);}
 	return (1);
 }

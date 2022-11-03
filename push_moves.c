@@ -6,13 +6,13 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:53:03 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/02 20:18:05 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/03 21:41:40 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* sa (swap a): Swap the first 2 elements at the top of stack a.
+/* sa (swap a): Swap the first 2 elements at the top of st a.
 Do nothing if there is only one or no elements. */
 int	swap_a(int *st_a, int print)
 {
@@ -21,12 +21,15 @@ int	swap_a(int *st_a, int print)
 	tmp = st_a[1];
 	st_a[1] = st_a[0];
 	st_a[0] = tmp;
-	if (print)
+	if (print){
 		ft_printf("sa\n");
+	int z= -1;
+	while (st_a[++z])
+		ft_printf("%i\tx\n", st_a[z]);}
 	return (1);
 }
 
-/* sb (swap b): Swap the first 2 elements at the top of stack b.
+/* sb (swap b): Swap the first 2 elements at the top of st b.
 Do nothing if there is only one or no elements. */
 int	swap_b(int *st_b, int print)
 {
@@ -35,8 +38,11 @@ int	swap_b(int *st_b, int print)
 	tmp = st_b[1];
 	st_b[1] = st_b[0];
 	st_b[0] = tmp;
-	if (print)
+	if (print){
 		ft_printf("sb\n");
+	int z= -1;
+	while (st_b[++z])
+		ft_printf("x\t%i\n", st_b[z]);}
 	return (1);
 }
 
@@ -46,6 +52,9 @@ int	swap_both(int *st_a, int *st_b)
 	swap_a(st_a, 0);
 	swap_b(st_b, 0);
 	ft_printf("ss\n");
+	int z= -1;
+	while (st_a[++z] || st_b[z])
+		ft_printf("%i\t%i\n", st_a[z], st_b[z]);
 	return (1);
 }
 
@@ -66,6 +75,9 @@ int	push_a(int *st_a, int *st_b)
 		st_b[i] = st_b[i + 1];
 	}
 	ft_printf("pa\n");
+	int z= -1;
+	while (st_a[++z] || st_b[z])
+		ft_printf("%i\t%i\n", st_a[z], st_b[z]);
 	return (1);
 }
 
@@ -75,16 +87,19 @@ int	push_b(int *st_a, int *st_b)
 {
 	int	i;
 
-	i = get_last(st_a) + 1;
+	i = get_last(st_b) + 1;
 	while (--i >= 0)
 	{
 		st_b[i + 1] = st_b[i];
 	}
 	st_b[0] = st_a[0];
-	while (++i <= get_last(st_b))
+	while (++i <= get_last(st_a))
 	{
 		st_a[i] = st_a[i + 1];
 	}
 	ft_printf("pb\n");
+	int z= -1;
+	while (st_a[++z] || st_b[z])
+		ft_printf("%i\t%i\n", st_a[z], st_b[z]);
 	return (1);
 }

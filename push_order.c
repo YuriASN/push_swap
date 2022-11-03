@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:07:21 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/02 20:18:57 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/03 22:45:32 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ int	order1(int *st_a, int *st_b)
 	while (st_a[0] > st_a[get_last(st_a)])
 		rotate_back_a(st_a, 1);
 	//checo se estão trocados os dois primeiros de cada
-	if (st_a[0] > st_a[1] && st_a[0] > st_b[1])
+	if (st_a[0] > st_a[1] && st_b[0] < st_b[1])
 		return (swap_both(st_a, st_b));
 	else if (st_a[0] > st_a[1])
 		return (swap_a(st_a, 1));
-	else if (st_b[0] > st_b[1])
+	else if (st_b[0] < st_b[1])
 		return (swap_b(st_b, 1));
 	//checo se o a0 está entre b0 e b1.
 	if (st_a[0] < st_b[0] && st_a[0] >= st_b[1])
@@ -83,19 +83,29 @@ int	order1(int *st_a, int *st_b)
 
 /* Start process of what to do in different conditions.
 If any changes are made it starts to check all over again. */
-void	get_order(int *stack_a, int *stack_b)
-{
-	push_b(stack_a, stack_b);
-	push_b(stack_a, stack_b);
-	while (!check_order(stack_a) || !check_order_r(stack_b))
+void	get_order(int *st_a, int *st_b)
+{int i= -1;
+	while (st_a[++i] || st_b[i])
+		ft_printf("%i\t%i\n", st_a[i], st_b[i]);
+	int	x;
+
+	x = -1;
+	if (st_a[2])
 	{
-		order1(stack_a, stack_b);
+		while (++x < get_lowest(st_a))
+			rotate_a(st_a, 1);
+		push_b(st_a, st_b);
+		push_b(st_a, st_b);
 	}
-	b_to_a(stack_a, stack_b);
-	if (check_order(stack_a) && !stack_b[0])
+	while ((!check_order(st_a) || !check_order_r(st_b)))
 	{
-		free (stack_a);
-		free (stack_b);
+		order1(st_a, st_b);
+	}
+	b_to_a(st_a, st_b);
+	if (check_order(st_a) && !st_b[0])
+	{
+		free (st_a);
+		free (st_b);
 		exit (0);
 	}
 }

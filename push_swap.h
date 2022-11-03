@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/02 20:28:24 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/03 22:43:06 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int		rotate_back_a(int *st_a, int print);
 int		rotate_back_b(int *st_b, int print);
 int		rotate_back_both(int *st_a, int *st_b);
 void	b_to_a(int *st_a, int *st_b);
+int		get_lowest(int *st_a);
 
 #endif

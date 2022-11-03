@@ -6,7 +6,7 @@
 #    By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 19:19:38 by ysantos-          #+#    #+#              #
-#    Updated: 2022/11/02 21:02:48 by ysantos-         ###   ########.fr        #
+#    Updated: 2022/11/03 20:36:28 by ysantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ all: $(NAME)
 
 $(NAME):
 	make bonus -Clibft/
-	$(CC) $(FLAGS) $(SRC) -Llibft -libft
+	$(CC) $(FLAGS) $(SRC) -Llibft -lft -o $(NAME)
 
 clean:
 	make clean -Clibft/
