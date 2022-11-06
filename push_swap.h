@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/03 22:43:06 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/06 13:50:50 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+
+typedef struct t_stlst
+{
+	int				value;
+	struct t_stlst	*nxt;
+	struct t_stlst	*prev;
+}	t_stk;
 
 void	get_order(int *stack_a, int *stack_b);
 int		check_order(int *stack);
@@ -32,5 +39,7 @@ int		rotate_back_b(int *st_b, int print);
 int		rotate_back_both(int *st_a, int *st_b);
 void	b_to_a(int *st_a, int *st_b);
 int		get_lowest(int *st_a);
+t_stk	*get_stack(t_stk **stack, int value);
+void	del_data(void *data);
 
 #endif
