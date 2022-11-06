@@ -6,64 +6,47 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:56:41 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/03 22:40:12 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/06 14:02:49 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // Check if stack A is completely on order and returns TRUE or FALSE.
-int	check_order(int *stack)
+int	check_order(t_stk *stack)
 {
-	int	i;
-
-	i = -1;
-	while (stack[++i])
+	while (stack->nxt)
 	{
-		if (stack[i] > stack[i + 1])
+		if (stack->value > stack->nxt->value)
 			return (0);
+		stack = stack->nxt;
 	}
-	ft_printf("order a OK\n");
+ft_printf("order a OK\n");
 	return (1);
 }
 
 // Check if stack B is completely on reverse order and returns TRUE or FALSE.
-int	check_order_r(int *stack)
+int	check_order_r(t_stk *stack)
 {
-	int	i;
-
-	i = -1;
-	while (stack[++i])
+	while (stack->nxt)
 	{
-		if (stack[i] < stack[i + 1])
+		if (stack->value < stack->nxt->value)
 			return (0);
+		stack = stack->nxt;
 	}
-	ft_printf("order b OK\n");
+ft_printf("order b OK\n");
 	return (1);
 }
 
-//Get position of last number on the stack and returns it.
-int	get_last(int *stack)
+t_stk	*get_lowest(t_stk *st_a)
 {
-	int	i;
+	t_stk	*tmp;
 
-	i = 0;
-	while (stack[i])
-		i++;
-	return (i - 1);
-}
-
-int	get_lowest(int *st_a)
-{
-	int	i;
-	int	sv;
-
-	i = -1;
-	sv = 0;
-	while (++i < get_last(st_a))
+	while (st_a->nxt)
 	{
-		if (st_a[sv] > st_a[i])
-			sv = i;
+		if (st_a->value > st_a->nxt->value)
+			tmp = st_a->nxt;
+		st_a = st_a->nxt;
 	}
-	return (sv);
+	return (tmp);
 }
