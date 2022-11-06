@@ -6,43 +6,46 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:07:07 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 15:14:15 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/06 19:09:47 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Link the given argument as last on the stack.
-t_stk	*get_stack(t_stk **stack, int value)
+/* Deletes and frees the given node and every
+successor of that node, using the function ’del’ and free.
+Finally, the pointer to the list must be set to NULL. */
+void	stkclear(t_stk *lst)
 {
-	t_stk	*new;
-
-	new = (t_stk *)malloc(sizeof(t_stk));
-	if (!new)
-		return (NULL);
-	new->value = value;
-	new->nxt = NULL;
-	if (!*stack)
+	if (!lst)
+		return ;
+	while (lst)
 	{
-		*stack = new;
-		new->prev = NULL;
+		lst->value = 0;
+		free (lst);
+		lst = lst->nxt;
 	}
-	else
-	{
-		ft_lstadd_back(stack, new);
-		new->prev = ft_lstlast(*stack);
-	}
-	return (new);
+	lst = NULL;
 }
 
-//Set value of data to 0 avoiding data leak.
-void	del_data(void *data)
+/* lst: teh beggining of the list.
+Returns the position of last node on the list */
+int	stksize(t_stk *lst)
 {
-	data = 0;
+	int	count;
+
+	count = 0;
+	while (lst)
+	{
+		lst = lst->nxt;
+		++count;
+	}
+	return (count);
 }
 
-//Returns last item of the stack.
-t_stk	*ft_stklast(t_stk *lst)
+/* Returns the last node of the stack.
+lst: First node of the list. */
+t_stk	*stklast(t_stk *lst)
 {
 	if (!lst)
 		return (0);

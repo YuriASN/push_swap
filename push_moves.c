@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:53:03 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 16:49:23 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/06 18:38:18 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,14 @@ The first element becomes the last.
 Print decides if, 0 don't print, 1 print A, 2 print B. */
 int	rotate_stk(t_stk *stack, int print)
 {
-	int	tmp;
+	t_stk	*tmp;
 
-	tmp = &stack->nxt;
-	stack->prev = ft_stklast(stack);
+	tmp = stack->nxt;
+	stack->prev = stklast(stack);
 	stack->prev->nxt = stack;
 	stack->nxt->prev = NULL;
 	stack->nxt = NULL;
 	stack = tmp;
-
 	if (print == 1)
 		ft_printf("ra\n");
 	if (print == 2)

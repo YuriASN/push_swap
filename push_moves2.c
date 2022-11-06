@@ -6,22 +6,21 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 22:14:50 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 16:55:33 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/06 18:38:56 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 /* Shift down all elements of stack by 1.
 The last element becomes the first.
 Print decides if, 0 don't print, 1 print A, 2 print B. */
 int	rotate_rev(t_stk *stack, int print)
 {
-	int	tmp;
+	t_stk	*tmp;
 
-	stack->prev = ft_stklast(stack);
-	tmp = &stack->prev;
+	stack->prev = stklast(stack);
+	tmp = stack->prev;
 	stack->prev->nxt = stack;
 	stack = tmp;
 	stack->prev->nxt = NULL;
