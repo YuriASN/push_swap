@@ -6,17 +6,17 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:28 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 13:50:02 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/06 14:46:42 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //Print error message and return 0
-static int	error_print(t_stk **st_a, t_stk **st_b)
+static int	error_print(t_stk **stk_a, t_stk **stk_b)
 {
-	ft_lstclear(st_a, del_data);
-	ft_lstclear(st_b, del_data);
+	ft_lstclear(stk_a, del_data);
+	ft_lstclear(stk_b, del_data);
 	ft_printf("Error\n");
 	exit (0);
 }

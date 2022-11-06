@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:07:07 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 13:52:14 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/06 15:14:15 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,14 @@ t_stk	*get_stack(t_stk **stack, int value)
 void	del_data(void *data)
 {
 	data = 0;
+}
+
+//Returns last item of the stack.
+t_stk	*ft_stklast(t_stk *lst)
+{
+	if (!lst)
+		return (0);
+	while (lst->nxt)
+		lst = lst->nxt;
+	return (lst);
 }

@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:56:41 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 14:02:49 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/06 14:46:53 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,18 @@ ft_printf("order b OK\n");
 	return (1);
 }
 
-t_stk	*get_lowest(t_stk *st_a)
+int	*get_lowest(t_stk *stk_a)
 {
 	t_stk	*tmp;
+	int		count;
 
-	while (st_a->nxt)
+	count = 1;
+	while (stk_a->nxt)
 	{
-		if (st_a->value > st_a->nxt->value)
-			tmp = st_a->nxt;
-		st_a = st_a->nxt;
+		if (stk_a->value > stk_a->nxt->value)
+			tmp = stk_a->nxt;
+		stk_a = stk_a->nxt;
+		++count;
 	}
-	return (tmp);
+	return (count);
 }
