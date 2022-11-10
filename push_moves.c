@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:53:03 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 18:38:18 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/10 01:01:06 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ int	swap_both(t_stk *stk_a, t_stk *stk_b)
 	return (1);
 }
 
+/* Push the last element of a stack OUT and put it on top of stack IN
+Print decides if, 1 print A to B, 2 print B to A.*/
+static int	push_last(t_stk *st_out, t_stk *st_in, int print)
+{
+	st_out->nxt->nxt = st_in->nxt;
+	st_in->nxt->prev = st_out->nxt;
+	st_in->nxt = st_out->nxt;
+	st_out->nxt = NULL;
+	if (print == 1)
+		ft_printf("pb\n");
+	if (print == 2)
+		ft_printf("pa\n");
+	return (1);
+}
+
 /* Take the first element at the top of OUT
 and put it at the top of IN.
 Print decides if, 1 print A to B, 2 print B to A.*/
@@ -45,19 +60,21 @@ int	push_stk(t_stk *st_out, t_stk *st_in, int print)
 {
 	t_stk	*tmp;
 
-	tmp = st_out->nxt;
-	if (st_in)
+	if (!st_out->nxt->nxt)
+		return (push_last(st_out, st_in, print));
+	tmp = st_out->nxt->nxt;
+	if (st_in->nxt)
 	{
-		st_in->prev = st_out;
-		st_out->nxt = st_in;
+		st_in->nxt->prev = st_out->nxt;
+		st_out->nxt->nxt = st_in->nxt;
 	}
 	else
 	{
-		st_out = st_in;
-		st_in->nxt = NULL;
+		st_in->nxt = st_out->nxt;
+		st_in->nxt->nxt = NULL;
 	}
 	tmp->prev = NULL;
-	st_in = tmp;
+	st_out->nxt = tmp;
 	if (print == 1)
 		ft_printf("pb\n");
 	if (print == 2)
@@ -72,24 +89,14 @@ int	rotate_stk(t_stk *stack, int print)
 {
 	t_stk	*tmp;
 
-	tmp = stack->nxt;
-	stack->prev = stklast(stack);
-	stack->prev->nxt = stack;
-	stack->nxt->prev = NULL;
-	stack->nxt = NULL;
-	stack = tmp;
+	tmp = stack->nxt->nxt;
+	stack->nxt->prev = stklast(stack);
+	stack->nxt->prev->nxt = stack->nxt;
+	stack->nxt->nxt = NULL;
+	stack->nxt = tmp;
 	if (print == 1)
 		ft_printf("ra\n");
 	if (print == 2)
 		ft_printf("rb\n");
-	return (1);
-}
-
-//rr : Rotate both stacks at the same time.
-int	rotate_both(t_stk *stk_a, t_stk *stk_b)
-{
-	rotate_stk(stk_a, 0);
-	rotate_stk(stk_b, 0);
-	ft_printf("rr\n");
 	return (1);
 }
