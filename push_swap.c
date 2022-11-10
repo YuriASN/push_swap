@@ -6,31 +6,14 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:28 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 19:09:29 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/10 02:03:15 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Adds the node 'new' to the end of the list
-lst: The address of a pointer to the 1st link of a list */
-static void	stk_add_back(t_stk **lst, t_stk *new)
-{
-	t_stk	*tmp;
-
-	if (!new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	tmp = stklast(*lst);
-	tmp->nxt = new;
-}
-
 // Link the given argument as last on the stack.
-static t_stk	*get_stack(t_stk *stack, int value)
+static t_stk	*get_stack(int value)
 {
 	t_stk	*new;
 
@@ -39,16 +22,6 @@ static t_stk	*get_stack(t_stk *stack, int value)
 		return (NULL);
 	new->value = value;
 	new->nxt = NULL;
-	if (!stack)
-	{
-		stack = new;
-		new->prev = NULL;
-	}
-	else
-	{
-		stk_add_back(&stack, new);
-		new->prev = stklast(stack);
-	}
 	return (new);
 }
 
@@ -60,17 +33,27 @@ static int	error_print(t_stk *stk_a)
 	exit (0);
 }
 
+/* static void	print_list(t_stk *lst){
+	while (lst)
+	{
+		ft_printf("%i\n", lst->value);
+		lst = lst->nxt;
+	}
+} */
+
 /* Check if the arguments received (except 1st 
 as it is the name of the proogram) are all alphanumerics and int size.
 Then it converts the argument to int and save it on the stack */
 static int	arg_check(char **args, int max, t_stk *stack)
 {
-	int	i;
-	int	k;
-	int	tmp;
+	int		i;
+	int		k;
+	int		tmp;
+	t_stk	*end;
 
 	i = 0;
 	k = -1;
+	end = stack;
 	while (++i < max)
 	{
 		k = -1;
@@ -82,22 +65,28 @@ static int	arg_check(char **args, int max, t_stk *stack)
 		tmp = ft_atoi(args[i]);
 		if (!tmp && args[i][2])
 			return (0);
-		if (!get_stack(stack, tmp))
-			return (0);
+		end->nxt = get_stack(tmp);
+		end->nxt->prev = end;
+		end = end->nxt;
 	}
 	return (1);
 }
 
 int	main(int argc, char *argv[])
 {
-	t_stk	*stack_a;
+	static t_stk	stack_a;
+	static t_stk	stack_b;
 
-	stack_a = (t_stk *)malloc(sizeof(t_stk));
 	if (argc <= 2)
 		exit(0);
-	if (!arg_check(argv, argc, stack_a))
-		error_print(stack_a);
-	get_order(stack_a);
-	ft_printf("end \e[0;35m LEAKS \e[0m \n");
+	if (!arg_check(argv, argc, &stack_a))
+		error_print(&stack_a);
+//print_list(stack_a.nxt);
+//rotate_rev(&stack_a, 1;
+//print_list(stack_a.nxt);
+//printf("\nlesgo\n");
+//print_list(stack_b.nxt);
+	get_order(&stack_a, &stack_b);
+ft_printf("end \e[0;35m LEAKS \e[0m \n");
 	return (0);
 }

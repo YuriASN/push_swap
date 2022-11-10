@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:56:41 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 18:18:12 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/10 03:37:32 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,26 @@ int	check_order_r(t_stk *stack)
 	return (1);
 }
 
-int	get_lowest(t_stk *stk_a)
+int	get_lowest(t_stk *stk)
 {
 	int	lowest;
+	int	sv;;
 	int	count;
 
 	lowest = 0;
 	count = 0;
-	while (stk_a->nxt)
+	sv = stk->value;
+	while (stk->nxt)
 	{
-		if (stk_a->value > stk_a->nxt->value)
+		if (sv > stk->nxt->value)
+		{
+			sv = stk->nxt->value;
 			lowest = count + 1;
-		stk_a = stk_a->nxt;
+printf("\033[93m\t lowest nbr = %i\t\033[m", stk->nxt->value);
+		}
+		stk = stk->nxt;
 		++count;
 	}
+printf("\033[93m\tlowest rotation = %i\n\033[m", lowest);
 	return (lowest);
 }

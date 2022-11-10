@@ -6,7 +6,7 @@
 #    By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/28 19:23:52 by ysantos-          #+#    #+#              #
-#    Updated: 2022/11/03 20:10:22 by ysantos-         ###   ########.fr        #
+#    Updated: 2022/11/09 23:23:42 by ysantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,20 +32,22 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(FLAGS) -c $(SRC)
-	ar rcs $(NAME) $(OBJ)
-	ranlib $(NAME)
-
+	@$(CC) $(FLAGS) -c $(SRC)
+	@ar rcs $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "\033[93mLibft done!\033[m"
+	
 bonus:
-	$(CC) $(FLAGS) -c $(SRC) $(BN)
-	ar rcs $(NAME) $(OBJ) $(BNOBJ)
-	ranlib $(NAME)
+	@$(CC) $(FLAGS) -c $(SRC) $(BN)
+	@ar rcs $(NAME) $(OBJ) $(BNOBJ)
+	@ranlib $(NAME)
+	@echo "\033[93mLibft Bonus done.\033[m"
 
 clean:
-	/bin/rm -f *.o
+	@/bin/rm -f *.o
 
 fclean: clean
-	/bin/rm -f $(NAME) libft.h.gch libft.so
+	@/bin/rm -f $(NAME) libft.h.gch libft.so
 
 re: fclean all
 

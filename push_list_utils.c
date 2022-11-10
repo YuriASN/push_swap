@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:07:07 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 19:09:47 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/10 02:59:04 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	stkclear(t_stk *lst)
 	while (lst)
 	{
 		lst->value = 0;
-		free (lst);
 		lst = lst->nxt;
 	}
 	lst = NULL;

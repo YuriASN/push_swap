@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/06 19:10:06 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/10 03:33:55 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct t_stlst
 	struct t_stlst	*prev;
 }	t_stk;
 
-void	get_order(t_stk *stk_a);
+void	get_order(t_stk *stk_a, t_stk *stk_b);
 int		check_order(t_stk *stack);
 int		check_order_r(t_stk *stack);
 int		swap_stk(t_stk *stack, int print);
@@ -37,6 +37,6 @@ void	b_to_a(t_stk *stk_a, t_stk *stk_b);
 void	stkclear(t_stk *lst);
 t_stk	*stklast(t_stk *lst);
 int		stksize(t_stk *lst);
-int		get_lowest(t_stk *stk_a);
+int		get_lowest(t_stk *stk);
 
 #endif
