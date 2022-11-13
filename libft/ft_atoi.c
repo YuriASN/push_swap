@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:43:11 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/04/24 01:36:29 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/13 22:35:00 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	jump_spaces(const char *str, int *x)
 
 int	ft_atoi(const char *str)
 {
-	int	nbr;
-	int	sign;
-	int	i;
+	ssize_t	nbr;
+	int		sign;
+	int		i;
 
 	i = 0;
 	nbr = 0;
@@ -47,10 +47,8 @@ int	ft_atoi(const char *str)
 		nbr += str[i] - '0';
 		++i;
 	}
-	if (i > 19 && sign < 0)
+	if ((nbr < -2147483648) || nbr > 2147483647)
 		return (0);
-	else if (i > 19 && sign > 0)
-		return (-1);
 	return (nbr * sign);
 }
 

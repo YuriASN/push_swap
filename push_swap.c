@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:28 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/13 18:15:54 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/13 22:30:35 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,36 @@ static t_stk	*get_stack(int value)
 }
 
 //Print error message and return 0
-static int	error_print(t_stk *stk_a)
+static void	error_print(t_stk *stk_a)
 {
 	stkclear(stk_a);
-	ft_printf("Error\n");
+	ft_printf("%sError%s\n", YEL, CRESET);
 	exit (0);
+}
+
+/* Check if there's a duplicated number*/
+static void	check_duplicated(t_stk *stack)
+{
+	int		cmp;
+	t_stk	*start;
+	t_stk	*next;
+
+	start = stack;
+	next = stack->nxt;
+	while (next->nxt)
+	{
+		cmp = next->value;
+		stack = next->nxt;
+		while (stack)
+		{
+			if (cmp == stack->value)
+			{printf("\t\tduplicated\n");
+				error_print(start);
+			}
+			stack = stack->nxt;
+		}
+		next = next->nxt;
+	}
 }
 
 /* Check if the arguments received (except 1st 
@@ -55,12 +80,13 @@ static int	arg_check(char **args, int max, t_stk *stack)
 			if (args[i][k] < 48 || args[i][k] > 57)
 				return (0);
 		tmp = ft_atoi(args[i]);
-		if (!tmp && args[i][2])
+		if (tmp == 0 && args[i][1]){printf("tmp == %i arg == %s\n", tmp, args[i]);
 			return (0);
-		end->nxt = get_stack(tmp);
+}		end->nxt = get_stack(tmp);
 		end->nxt->prev = end;
 		end = end->nxt;
 	}
+	check_duplicated(stack);
 	return (1);
 }
 
@@ -73,7 +99,7 @@ int	main(int argc, char *argv[])
 		exit(0);
 	if (!arg_check(argv, argc, &stk_a))
 		error_print(&stk_a);
-printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
+//printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
 //push_stk(&stk_a, &stk_b, 1);
 //push_stk(&stk_a, &stk_b, 1);
 //b_to_a(&stk_a, &stk_b);
@@ -82,6 +108,6 @@ printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\
 //swap_both(&stk_a, &stk_b);
 	get_order(&stk_a, &stk_b);
 printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
-ft_printf("end \e[0;35m LEAKS \e[0m \n");
+printf("end \e[0;35m LEAKS \e[0m \n");
 	return (0);
 }

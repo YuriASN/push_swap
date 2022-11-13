@@ -6,7 +6,7 @@
 #    By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 19:19:38 by ysantos-          #+#    #+#              #
-#    Updated: 2022/11/12 10:08:53 by ysantos-         ###   ########.fr        #
+#    Updated: 2022/11/13 21:54:04 by ysantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ all: $(NAME)
 
 $(NAME):
 	@make bonus -Clibft/ --no-print-directory
-	@$(CC) $(FLAGS) $(SRC) -Llibft -lft -o $(NAME)
+	@$(CC) $(FLAGS) $(SRC) -g -fsanitize=address -Llibft -lft -o $(NAME)
 	@echo "\033[92mProgram compiled!\033[m"
 	
 clean:

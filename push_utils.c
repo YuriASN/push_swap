@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:56:41 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/13 14:16:56 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/13 22:37:48 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_order_r(t_stk *stack)
 int	get_lowest(t_stk *stk)
 {
 	int	lowest;
-	int	sv;;
+	int	sv;
 	int	count;
 
 	lowest = 0;
@@ -66,8 +66,8 @@ printf("\033[93m\tlowest rotation = %i\n\033[m", lowest);
 	return (lowest);
 }
 
-/* lst: teh beggining of the list.
-Returns the position of last node on the list */
+/* lst: the beggining of the list.
+Returns the number of nodes on the list */
 int	stksize(t_stk *lst)
 {
 	int	count;
