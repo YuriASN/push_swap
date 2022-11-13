@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:07:07 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/10 02:59:04 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/12 11:22:17 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,13 @@ void	stkclear(t_stk *lst)
 	lst = NULL;
 }
 
-/* lst: teh beggining of the list.
-Returns the position of last node on the list */
-int	stksize(t_stk *lst)
-{
-	int	count;
-
-	count = 0;
-	while (lst)
-	{
-		lst = lst->nxt;
-		++count;
-	}
-	return (count);
-}
-
-/* Returns the last node of the stack.
-lst: First node of the list. */
-t_stk	*stklast(t_stk *lst)
-{
-	if (!lst)
-		return (0);
+void	print_list(t_stk *lst){
+	if (!lst->nxt)
+		return ;
 	while (lst->nxt)
+	{
+		ft_printf("%i\n", lst->nxt->value);
 		lst = lst->nxt;
-	return (lst);
+	}
+	printf("\n");
 }

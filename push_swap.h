@@ -6,12 +6,21 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/10 03:33:55 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/13 14:39:50 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# define WHT "\e[0;97m"
+# define CYN "\e[0;96m"
+# define MAG "\e[0;95m"
+# define BLU "\e[0;94m"
+# define YEL "\e[0;93m"
+# define GRN "\e[0;92m"
+# define RED "\e[0;91m"
+# define BLK "\e[0;90m"
+# define CRESET "\e[0m"
 
 # include "libft/libft.h"
 
@@ -38,5 +47,6 @@ void	stkclear(t_stk *lst);
 t_stk	*stklast(t_stk *lst);
 int		stksize(t_stk *lst);
 int		get_lowest(t_stk *stk);
+void	print_list(t_stk *lst);
 
 #endif

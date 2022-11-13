@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:28 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/10 02:03:15 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/13 18:15:54 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,6 @@ static int	error_print(t_stk *stk_a)
 	ft_printf("Error\n");
 	exit (0);
 }
-
-/* static void	print_list(t_stk *lst){
-	while (lst)
-	{
-		ft_printf("%i\n", lst->value);
-		lst = lst->nxt;
-	}
-} */
 
 /* Check if the arguments received (except 1st 
 as it is the name of the proogram) are all alphanumerics and int size.
@@ -74,19 +66,22 @@ static int	arg_check(char **args, int max, t_stk *stack)
 
 int	main(int argc, char *argv[])
 {
-	static t_stk	stack_a;
-	static t_stk	stack_b;
+	static t_stk	stk_a;
+	static t_stk	stk_b;
 
 	if (argc <= 2)
 		exit(0);
-	if (!arg_check(argv, argc, &stack_a))
-		error_print(&stack_a);
-//print_list(stack_a.nxt);
-//rotate_rev(&stack_a, 1;
-//print_list(stack_a.nxt);
-//printf("\nlesgo\n");
-//print_list(stack_b.nxt);
-	get_order(&stack_a, &stack_b);
+	if (!arg_check(argv, argc, &stk_a))
+		error_print(&stk_a);
+printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
+//push_stk(&stk_a, &stk_b, 1);
+//push_stk(&stk_a, &stk_b, 1);
+//b_to_a(&stk_a, &stk_b);
+//swap_stk(&stk_a, 1);
+//printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
+//swap_both(&stk_a, &stk_b);
+	get_order(&stk_a, &stk_b);
+printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
 ft_printf("end \e[0;35m LEAKS \e[0m \n");
 	return (0);
 }

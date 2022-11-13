@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:56:41 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/10 03:37:32 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/13 14:16:56 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 // Check if stack A is completely on order and returns TRUE or FALSE.
 int	check_order(t_stk *stack)
 {
+	if (!stack->nxt || !stack->nxt->nxt)
+		return (1);
+	stack = stack->nxt;
 	while (stack->nxt)
 	{
 		if (stack->value > stack->nxt->value)
@@ -27,6 +30,9 @@ int	check_order(t_stk *stack)
 // Check if stack B is completely on reverse order and returns TRUE or FALSE.
 int	check_order_r(t_stk *stack)
 {
+	if (!stack->nxt || !stack->nxt->nxt)
+		return (1);
+	stack = stack->nxt;
 	while (stack->nxt)
 	{
 		if (stack->value < stack->nxt->value)
@@ -58,4 +64,31 @@ printf("\033[93m\t lowest nbr = %i\t\033[m", stk->nxt->value);
 	}
 printf("\033[93m\tlowest rotation = %i\n\033[m", lowest);
 	return (lowest);
+}
+
+/* lst: teh beggining of the list.
+Returns the position of last node on the list */
+int	stksize(t_stk *lst)
+{
+	int	count;
+
+	count = 0;
+	while (lst)
+	{
+		lst = lst->nxt;
+		++count;
+	}
+printf("\e[0;33m\tSize of STK %i\e[0m\n", count);
+	return (count);
+}
+
+/* Returns the last node of the stack.
+lst: First node of the list. */
+t_stk	*stklast(t_stk *lst)
+{
+	if (!lst)
+		return (0);
+	while (lst->nxt)
+		lst = lst->nxt;
+	return (lst);
 }
