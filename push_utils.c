@@ -6,13 +6,14 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:56:41 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/13 22:37:48 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:19:47 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Check if stack A is completely on order and returns TRUE or FALSE.
+/* Gets the 1st node (no value) of the list.
+Check if stack A is completely on order and returns TRUE or FALSE. */
 int	check_order(t_stk *stack)
 {
 	if (!stack->nxt || !stack->nxt->nxt)
@@ -27,7 +28,8 @@ int	check_order(t_stk *stack)
 	return (1);
 }
 
-// Check if stack B is completely on reverse order and returns TRUE or FALSE.
+/* Gets the 1st node (no value) of the list.
+Check if stack B is completely on reverse order and returns TRUE or FALSE. */
 int	check_order_r(t_stk *stack)
 {
 	if (!stack->nxt || !stack->nxt->nxt)
@@ -42,6 +44,8 @@ int	check_order_r(t_stk *stack)
 	return (1);
 }
 
+/* Gets the 1st node with value of the list.
+Return the amount of rotates to get to the lowest number. */
 int	get_lowest(t_stk *stk)
 {
 	int	lowest;
@@ -57,16 +61,16 @@ int	get_lowest(t_stk *stk)
 		{
 			sv = stk->nxt->value;
 			lowest = count + 1;
-printf("\033[93m\t lowest nbr = %i\t\033[m", stk->nxt->value);
 		}
 		stk = stk->nxt;
 		++count;
 	}
-printf("\033[93m\tlowest rotation = %i\n\033[m", lowest);
+//printf("\033[93m\t lowest nbr = %i\t\033[m", sv);
+//printf("\033[93m\tlowest rotation = %i\n\033[m", lowest);
 	return (lowest);
 }
 
-/* lst: the beggining of the list.
+/* Gets the 1st node with value of the list.
 Returns the number of nodes on the list */
 int	stksize(t_stk *lst)
 {
@@ -78,12 +82,12 @@ int	stksize(t_stk *lst)
 		lst = lst->nxt;
 		++count;
 	}
-printf("\e[0;33m\tSize of STK %i\e[0m\n", count);
+//printf("\e[0;33m\tSize of STK %i\e[0m\n", count);
 	return (count);
 }
 
 /* Returns the last node of the stack.
-lst: First node of the list. */
+Gets the 1st node (no value) of the list. */
 t_stk	*stklast(t_stk *lst)
 {
 	if (!lst)

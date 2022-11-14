@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 22:14:50 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/13 21:37:43 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:35:02 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 //rr : Rotate both stacks at the same time.
 void	rotate_both(t_stk *stk_a, t_stk *stk_b)
 {
-printf("%sInto rotate both%s\n", RED, CRESET);
+//printf("%sInto rotate both%s\n", RED, CRESET);
 	if (!stk_b->nxt || !stk_a->nxt || !stk_a->nxt->nxt || !stk_b->nxt->nxt)
-		{printf("\t%sRotate both chamado sem 2 stacks com 2 elementos%s\n", YEL, CRESET);
-		return ; }
+		return ;
 	rotate_stk(stk_a, 0);
 	rotate_stk(stk_b, 0);
 	ft_printf("rr\n");
@@ -29,11 +28,11 @@ The last element becomes the first.
 Print decides if, 0 don't print, 1 print A, 2 print B. */
 void	rotate_rev(t_stk *stack, int print)
 {
-printf("%sInto rotate rev%s\n", RED, CRESET);
+//printf("%sInto rotate rev%s\n", RED, CRESET);
 	t_stk	*tmp;
 
-	if (!stack->nxt || !stack->nxt->nxt){printf("\t%sMissing 2 itens to rotate REV%s\n", YEL, CRESET);
-		return ; }
+	if (!stack->nxt || !stack->nxt->nxt)
+		return ;
 	tmp = stklast(stack);
 	stack->nxt->prev = tmp;
 	stack->nxt->prev->nxt = stack->nxt;
@@ -49,10 +48,9 @@ printf("%sInto rotate rev%s\n", RED, CRESET);
 //rrr : rra and rrb at the same time.
 void	rotate_rev_both(t_stk *stk_a, t_stk *stk_b)
 {
-printf("%sInto rotate rev both%s\n", RED, CRESET);
+//printf("%sInto rotate rev both%s\n", RED, CRESET);
 	if (!stk_b->nxt || !stk_a->nxt || !stk_a->nxt->nxt || !stk_b->nxt->nxt)
-		{printf("\t%sRotate REV both chamado sem 2 stacks com 2 elementos%s\n", YEL, CRESET);
-		return ; }
+		return ;
 	rotate_rev(stk_a, 0);
 	rotate_rev(stk_b, 0);
 	ft_printf("rrr\n");
@@ -60,7 +58,7 @@ printf("%sInto rotate rev both%s\n", RED, CRESET);
 
 void	b_to_a(t_stk *stk_a, t_stk *stk_b)
 {
-printf("%sInto b to a%s\n", RED, CRESET);
+//printf("%sInto b to a%s\n", RED, CRESET);
 	while (stk_b->nxt)
 		push_stk(stk_b, stk_a, 2);
 }

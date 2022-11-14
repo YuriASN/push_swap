@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:28 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/13 22:30:35 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:30:18 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_stk	*get_stack(int value)
 static void	error_print(t_stk *stk_a)
 {
 	stkclear(stk_a);
-	ft_printf("%sError%s\n", YEL, CRESET);
+	write(2, "Error\n", 6);
 	exit (0);
 }
 
@@ -49,7 +49,7 @@ static void	check_duplicated(t_stk *stack)
 		while (stack)
 		{
 			if (cmp == stack->value)
-			{printf("\t\tduplicated\n");
+			{//printf("\t\tduplicated\n");
 				error_print(start);
 			}
 			stack = stack->nxt;
@@ -80,9 +80,9 @@ static int	arg_check(char **args, int max, t_stk *stack)
 			if (args[i][k] < 48 || args[i][k] > 57)
 				return (0);
 		tmp = ft_atoi(args[i]);
-		if (tmp == 0 && args[i][1]){printf("tmp == %i arg == %s\n", tmp, args[i]);
-			return (0);
-}		end->nxt = get_stack(tmp);
+		if (tmp == 0 && args[i][1])
+			error_print(stack);
+		end->nxt = get_stack(tmp);
 		end->nxt->prev = end;
 		end = end->nxt;
 	}
@@ -95,10 +95,15 @@ int	main(int argc, char *argv[])
 	static t_stk	stk_a;
 	static t_stk	stk_b;
 
-	if (argc <= 2)
-		exit(0);
+	if (argc == 1)
+		exit (0);
 	if (!arg_check(argv, argc, &stk_a))
 		error_print(&stk_a);
+	if (argc <= 2)
+	{
+		stkclear(&stk_a);
+		exit(0);
+	}
 //printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
 //push_stk(&stk_a, &stk_b, 1);
 //push_stk(&stk_a, &stk_b, 1);
@@ -107,7 +112,7 @@ int	main(int argc, char *argv[])
 //printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
 //swap_both(&stk_a, &stk_b);
 	get_order(&stk_a, &stk_b);
-printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
-printf("end \e[0;35m LEAKS \e[0m \n");
+//printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
+//printf("end \e[0;35m LEAKS \e[0m \n");
 	return (0);
 }
