@@ -6,11 +6,20 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:07:21 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/15 20:51:11 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/17 01:06:48 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+//Free stk before quiting.
+static void	clean_quit(t_stk *stk)
+{
+print_list(stk);
+	stkclear(stk);
+	exit (0);
+}
+
 /* Choose where the A has to pushed at B. */
 static void	push_where(t_stk *stk_a, t_stk *stk_b)
 {
@@ -55,34 +64,102 @@ static int	order1(t_stk *stk_a, t_stk *stk_b)
 	return (0);
 }
 
-/* Get only stack a in order when a second stack is alredy ordered */
-static void	order_a(t_stk *stack)
+static void	order3a(t_stk *stk)
+{
+	int	low;
+
+	low = get_lowest(stk->nxt);
+	if (check_order_r(stk))
+	{
+		swap_stk(stk, 1);
+		rotate_rev(stk, 1);
+	}
+	else if (stk->nxt->value < stk->nxt->nxt->nxt->value && low == 1)
+		swap_stk(stk, 1);
+	else if (stk->nxt->nxt->value > stk->nxt->nxt->nxt->value && low == 0)
+	{
+		swap_stk(stk, 1);
+		rotate_stk(stk, 1);
+	}
+	else if (low == 0)
+	{
+		rotate_stk(stk, 1);
+		swap_stk(stk, 1);
+		rotate_rev(stk, 1);
+	}
+}
+
+/* Get only stk a in order when a second stk is alredy ordered */
+static void	order_a(t_stk *stk)
 {
 //printf("%sinto order A\n%s", YEL, CRESET);
-	while (!check_order(stack))
+	if (stksize(stk->nxt) == 3)
+		order3a(stk);
+	while (!check_order(stk))
 	{
-		if (stack->nxt->value > stack->nxt->nxt->value && get_lowest(stack->nxt) != 1)
-			swap_stk(stack, 1);
-		rotate_stk(stack, 1);
-//print_list(stack);
+		if (stk->nxt->value > stk->nxt->nxt->value && get_lowest(stk->nxt) != 1)
+			swap_stk(stk, 1);
+		if (!check_order(stk))
+			rotate_stk(stk, 1);
+//print_list(stk);
 //getchar();
 	}
 }
 
-/* **************************************************  FIX IT!  ************************************************** */
-/* Get only stack b in order when a second stack is alredy ordered */
-static void	order_b(t_stk *stack)
+
+static void	order3b(t_stk *stk)
+{
+	int	low;
+
+	low = get_lowest(stk->nxt);
+	if (check_order(stk))
+	{
+		swap_stk(stk, 2);
+		rotate_stk(stk, 2);
+	}
+	else if (stk->nxt->value < stk->nxt->nxt->nxt->value && low == 1)
+		rotate_rev(stk, 2);
+	else if (stk->nxt->nxt->value > stk->nxt->nxt->nxt->value && low == 0)
+	{
+		rotate_rev(stk, 2);
+		swap_stk(stk, 2);
+	}
+	else if (low == 1)
+	{
+		rotate_stk(stk, 1);
+		swap_stk(stk, 1);
+		rotate_rev(stk, 1);
+	}
+}
+
+/* Get only stk b in order when a second stk is alredy ordered */
+static void	order_b(t_stk *stk)
 {
 //printf("%s\tinto order B\n%s", YEL, CRESET);
-	while (!check_order_r(stack))
+	if (stksize(stk->nxt) == 3)
+		order3b(stk);
+	while (!check_order_r(stk))
 	{
-		if (stack->nxt->value < stack->nxt->nxt->value && get_lowest(stack->nxt) < stksize(stack->nxt))
-			swap_stk(stack, 2);
-		rotate_stk(stack, 2);
+		if (stksize(stk->nxt) == 3 && get_lowest(stk->nxt) == 0)
+		{
+			rotate_rev(stk, 2);
+			if (stk->nxt->value < stk->nxt->nxt->value)
+				swap_stk(stk, 2);
+			return ;
+		}
+		else if (get_lowest(stk->nxt) == 0 )
+		{
+			rotate_rev(stk, 2);
+			rotate_rev(stk, 2);
+			continue ;
+		}
+		if (stk->nxt->value < stk->nxt->nxt->value)
+			swap_stk(stk, 2);
+		if (!check_order_r(stk))
+			rotate_rev(stk, 2);
 //getchar();
 	}
 }
-/* *************************************************************************************************************** */
 
 /* Put lowest number at first to be pushed to b. */
 static void	start_stka(t_stk *stk_a)
@@ -114,7 +191,7 @@ void	get_order(t_stk *stk_a, t_stk *stk_b)
 	{
 		if (stk_b->nxt)
 			b_to_a(stk_a, stk_b);
-		exit (0);
+		clean_quit(stk_a);
 	}
 	if (stksize(stk_a->nxt) > 7)
 	{
@@ -125,7 +202,7 @@ void	get_order(t_stk *stk_a, t_stk *stk_b)
 	else
 	{
 		order_a(stk_a);
-		exit (0);
+		clean_quit(stk_a);
 	}
 	while ((!check_order(stk_a) || !check_order_r(stk_b)) || stk_a->nxt->value < stk_b->nxt->value)
 	{
@@ -133,7 +210,8 @@ void	get_order(t_stk *stk_a, t_stk *stk_b)
 //getchar();
 		order1(stk_a, stk_b);
 		if (stksize(stk_a->nxt) < 8 && !check_order(stk_a))
-			{order_a(stk_a); print_list(stk_a);}
+			{order_a(stk_a); //print_list(stk_a);
+			}
 		if (!check_order_r(stk_b))
 			order_b(stk_b);
 		if (stk_a->nxt->value < stk_b->nxt->value && stksize(stk_a->nxt) > 4)
@@ -145,8 +223,5 @@ void	get_order(t_stk *stk_a, t_stk *stk_b)
 	if (stk_b->nxt)
 		b_to_a(stk_a, stk_b);
 	if (check_order(stk_a) && !stk_b->nxt){//printf("\t\t\e[0;32mEND WITHOUT LEAKS!\e[0m\n"); //printf("%slist a:%s\n", CYN, CRESET); 	print_list(stk_a);		//printf("%slist b:%s\n", CYN, CRESET);	print_list(stk_b);
-		exit (0);	}
+		clean_quit(stk_a);	}
 }
-
-
-//Change all exit for a funtion that free the stack and exit

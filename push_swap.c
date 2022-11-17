@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:11:28 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/14 20:30:18 by ysantos-         ###   ########.fr       */
+/*   Updated: 2022/11/17 00:44:48 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ static void	check_duplicated(t_stk *stack)
 		while (stack)
 		{
 			if (cmp == stack->value)
-			{//printf("\t\tduplicated\n");
 				error_print(start);
-			}
 			stack = stack->nxt;
 		}
 		next = next->nxt;
@@ -113,6 +111,6 @@ int	main(int argc, char *argv[])
 //swap_both(&stk_a, &stk_b);
 	get_order(&stk_a, &stk_b);
 //printf("%slist a:%s\n", CYN, CRESET); 	print_list(&stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(&stk_b);
-//printf("end \e[0;35m LEAKS \e[0m \n");
+printf("end \e[0;35m LEAKS \e[0m \n");
 	return (0);
 }
