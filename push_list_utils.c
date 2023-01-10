@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:07:07 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/13 21:09:28 by ysantos-         ###   ########.fr       */
+/*   Updated: 2023/01/10 00:16:30 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ void	stkclear(t_stk *lst)
 	lst = NULL;
 }
 
+//Free stk before quiting.
+void	clean_quit(t_stk *stk)
+{
+	stkclear(stk);
+	exit (0);
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TO BE REMOVED! */
 void	print_list(t_stk *lst){
 	if (!lst->nxt)
 		return ;

@@ -33,10 +33,12 @@ void	rotate_rev_both(t_stk *stk_a, t_stk *stk_b);
 void	b_to_a(t_stk *stk_a, t_stk *stk_b);
 /* -------------------- Lists functions ----------------------------------- */
 void	stkclear(t_stk *lst);
+void	clean_quit(t_stk *stk);
 t_stk	*stklast(t_stk *lst);
 int		stksize(t_stk *lst);
 int		get_lowest(t_stk *stk);
 void	print_list(t_stk *lst);
 void	order_big(t_stk *stk_a, t_stk *stk_b);
+void	less_moves(t_stk *stk_a, t_stk *stk_b);
 
 #endif
