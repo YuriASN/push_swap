@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 01:11:54 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/13 21:33:01 by ysantos-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -48,5 +37,6 @@ t_stk	*stklast(t_stk *lst);
 int		stksize(t_stk *lst);
 int		get_lowest(t_stk *stk);
 void	print_list(t_stk *lst);
+void	order_big(t_stk *stk_a, t_stk *stk_b);
 
 #endif
