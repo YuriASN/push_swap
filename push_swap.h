@@ -10,6 +10,7 @@
 # define RED "\e[0;91m"
 # define BLK "\e[0;90m"
 # define CRESET "\e[0m"
+# define INT_MAX 2147483647
 
 # include "libft/libft.h"
 
@@ -23,6 +24,9 @@ typedef struct t_stlst
 void	get_order(t_stk *stk_a, t_stk *stk_b);
 int		check_order(t_stk *stack);
 int		check_order_r(t_stk *stack);
+int		order_loop(t_stk *stk);
+int		order_loop_rev(t_stk *stk);
+int		fix_loop(t_stk *stk, int rev);
 void	swap_stk(t_stk *stack, int print);
 void	swap_both(t_stk *stk_a, t_stk *stk_b);
 void	push_stk(t_stk *st_out, t_stk *st_in, int print);

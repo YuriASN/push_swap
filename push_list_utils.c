@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_list_utils.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 13:07:07 by ysantos-          #+#    #+#             */
-/*   Updated: 2023/01/10 00:16:30 by ysantos-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -30,9 +19,16 @@ void	stkclear(t_stk *lst)
 //Free stk before quiting.
 void	clean_quit(t_stk *stk)
 {
+printf("Clean quit!\n");
+printf("%slist:%s\n", CYN, CRESET); 	print_list(stk);
 	stkclear(stk);
 	exit (0);
 }
+
+
+
+
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TO BE REMOVED! */
 void	print_list(t_stk *lst){

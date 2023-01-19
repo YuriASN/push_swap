@@ -1,6 +1,23 @@
 
 #include "push_swap.h"
 
+/*	Change reversed order on stack a. */
+static void	change_order(t_stk *stk_a, t_stk *stk_b)
+{
+	order_loop_rev(stk_a);
+	while (stksize(stk_a->nxt) > 3)
+		push_stk(stk_a, stk_b, 1);
+	if (stksize(stk_a->nxt) == 3)
+		swap_stk(stk_a, 1);
+	rotate_rev(stk_a, 1);
+	while (stk_b->nxt)
+	{
+		push_stk(stk_b, stk_a, 2);
+		rotate_stk(stk_a, 1);
+	}
+	clean_quit(stk_a);
+}
+
 static void	order3a(t_stk *stk)
 {
 	int	low;
@@ -26,49 +43,6 @@ static void	order3a(t_stk *stk)
 	}
 }
 
-/* Continues order_loop function. */
-static int	order_loop_cont(t_stk *s, t_stk *stk, int high)
-{
-	while (s)
-	{
-		if (!s->nxt)
-		{
-			if (s->value > stk->nxt->value && stk->nxt->value != high)
-				return (0);
-			if (stk->nxt->value == high)
-				return (1);
-			s = stk->nxt;
-		}
-		if (s->nxt->value == high)
-			return (1);
-		if (s->value > s->nxt->value)
-			return (0);
-		s = s->nxt;
-	}
-	return (0);
-}
-
-/* Check if stack is in order but allowing the search to loop
-Return "0" if isn't and "1" if it's */
-static int	order_loop(t_stk *stk)
-{
-	t_stk	*s;
-	int		high;
-
-	s = stk->nxt;
-	high = s->value;
-	while (s->nxt)
-	{
-		if (high > s->nxt->value)
-			high = s->nxt->value;
-		s = s->nxt;
-	}
-	s = stk->nxt;
-	while (s->value != high)
-		s = s->nxt;
-	return (order_loop_cont(s, stk, high));
-}
-
 /* Get only stk a in order when a second stk is alredy ordered */
 static void	order_a(t_stk *stk)
 {
@@ -92,6 +66,12 @@ void	get_order(t_stk *stk_a, t_stk *stk_b)
 {
 	if (check_order(stk_a) && !stk_b->nxt)
 		clean_quit(stk_a);
+	if (order_loop(stk_a))
+	{
+		clean_quit(stk_a);
+	}
+	if (check_order_r(stk_a) || order_loop_rev(stk_a))
+		change_order(stk_a, stk_b);
 	if (stksize(stk_a->nxt) > 30 || stksize(stk_a->nxt) == 5)
 		order_big(stk_a, stk_b);
 	else
