@@ -4,7 +4,6 @@
 /*	Change reversed order on stack a. */
 static void	change_order(t_stk *stk_a, t_stk *stk_b)
 {
-	order_loop_rev(stk_a);
 	while (stksize(stk_a->nxt) > 3)
 		push_stk(stk_a, stk_b, 1);
 	if (stksize(stk_a->nxt) == 3)
@@ -67,12 +66,10 @@ void	get_order(t_stk *stk_a, t_stk *stk_b)
 	if (check_order(stk_a) && !stk_b->nxt)
 		clean_quit(stk_a);
 	if (order_loop(stk_a))
-	{
 		clean_quit(stk_a);
-	}
-	if (check_order_r(stk_a) || order_loop_rev(stk_a))
+	if (order_loop_rev(stk_a) || check_order_r(stk_a))
 		change_order(stk_a, stk_b);
-	if (stksize(stk_a->nxt) > 30 || stksize(stk_a->nxt) == 5)
+	if (stksize(stk_a->nxt) > 6 || stksize(stk_a->nxt) == 5)
 		order_big(stk_a, stk_b);
 	else
 	{
