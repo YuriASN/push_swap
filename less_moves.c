@@ -7,28 +7,33 @@ static void	get_a_moves(t_stk *stk_a, int b, int *moves)
 {
 	t_stk	*tmp_a;
 	int		size_a;
+	int		sv;
 
 	size_a = stksize(stk_a->nxt);
 	tmp_a = stk_a;
 	moves[0] = -1;
-	while (tmp_a->nxt)
+	while (tmp_a && tmp_a->nxt)
 	{
 		tmp_a = tmp_a->nxt;
-		while (moves[0] <= size_a / 2)
+		while (++moves[0] <= size_a / 2)
 		{
-			if (b < tmp_a->value)
+			if (b < tmp_a->value && check_order(tmp_a))
 				return ;
-			++moves[0];
+			else if (b < tmp_a->value)
+				return ;
+			sv = tmp_a->value;
 			tmp_a = tmp_a->nxt;
 		}
-		moves[0] *= -1;
-		++moves[0];
-		while (moves[0] != 0)
+		if (!tmp_a)
+			return ;
+		moves[0] = 0;
+		tmp_a = stklast(tmp_a);
+		while (tmp_a->value != sv)
 		{
-			if (b < tmp_a->value && b > stklast(tmp_a)->value)
+			--moves[0];
+			if (b > tmp_a->value)
 				return ;
-			tmp_a = tmp_a->nxt;
-			++moves[0];
+			tmp_a = tmp_a->prev;
 		}
 	}
 }
@@ -38,6 +43,7 @@ static void	get_moves(t_stk *stk_a, t_stk *stk_b, int **moves)
 {
 	int		i;
 	int		size_b;
+	int		sv;
 	t_stk	*tmp_b;
 
 	tmp_b = stk_b->nxt;
@@ -45,69 +51,82 @@ static void	get_moves(t_stk *stk_a, t_stk *stk_b, int **moves)
 	i = -1;
 	while (++i <= size_b / 2)
 	{
+//printf("i = %i\t", i);
 		get_a_moves(stk_a, tmp_b->value, moves[i]);
+		sv = tmp_b->value;
 		tmp_b = tmp_b->nxt;
-		++moves[i][1];
+		moves[i][1] = i;
+//printf("move is %i, %i\n", moves[i][0], moves[i][1]);
 	}
-	moves[i][1] *= -1;
-	while (++i < size_b)
+	if (!tmp_b)
+		return ;
+	moves[i][1] = 0;
+	tmp_b = stklast(tmp_b);
+	while (tmp_b->value != sv)
 	{
+//printf("i = %i\t", i);
 		get_a_moves(stk_a, tmp_b->value, moves[i]);
-		tmp_b = tmp_b->nxt;
-		++moves[i][1];
+		tmp_b = tmp_b->prev;
+		--moves[i][1];
+		++i;
+//printf("move is %i, %i\n", moves[i][0], moves[i][1]);
 	}
 }
 
 /*	Returns the index of the best number of B to move */
-static int	get_lowest_moves(int **mv, int b_size)
+static int	get_lowest_moves(int **move, int b_size)
 {
 	int	i;
 	int	tmp;
-	int	less_moves;
-	int	**moves;
-
-	moves = mv;
-	if (moves[0][0] == 0 && moves[0][1] == 0)
+	int	less_moves[2];
+	int	a;
+	int	b;
+//printf("b size = %i\n", b_size);
+	if (move[0][0] == 0 && move[0][1] == 0)
 		return (0);
 	i = -1;
-	less_moves = INT_MAX;
+	less_moves[0] = 0;
+	less_moves[1] = INT_MAX;
 	while (++i < b_size)
 	{
 		tmp = 0;
-		while (moves[i][0] < 0 && moves[i][1] < 0)
+		a = move[i][0];
+		b = move[i][1];
+		while (a < 0 && b < 0)
 		{
 			++tmp;
-			++moves[i][0];
-			++moves[i][1];
+			++a;
+			++b;
 		}
-		while (moves[i][0] > 0 && moves[i][1] > 0)
+		while (a > 0 && b > 0)
 		{
 			++tmp;
-			--moves[i][0];
-			--moves[i][1];
+			--a;
+			--b;
 		}
-		while (moves[i][0])
+		while (a)
 		{
-			if (moves[i][0] < 0)
-				++moves[i][0];
+			if (a < 0)
+				++a;
 			else
-				--moves[i][0];
+				--a;
 			++tmp;
 		}
-		while (moves[i][1])
+		while (b)
 		{
-			if (moves[i][1] < 0)
-				++moves[i][1];
+			if (b < 0)
+				++b;
 			else
-				--moves[i][1];
+				--b;
 			++tmp;
 		}
-		if (tmp < less_moves)
+		if (tmp < less_moves[1])
 		{
-			less_moves = tmp;
+			less_moves[0] = i;
+			less_moves[1] = tmp;
 		}
 	}
-	return (less_moves);
+	return (less_moves[0]);
 }
 
 /*	Swap best the best option from B to A */
@@ -165,18 +184,19 @@ void	less_moves(t_stk *stk_a, t_stk *stk_b)
 
 	i = -1;
 	move_size = stksize(stk_b);
-	moves = malloc(sizeof(int **) * move_size);
+	moves = (int **)malloc(sizeof(int **) * move_size);
 	while (++i < move_size)
 		moves[i] = ft_calloc(sizeof(int *), 2);
 	while (stk_b->nxt)
 	{
+//getchar();
 		get_moves(stk_a, stk_b, moves);
-		less_moves = get_lowest_moves(moves, stksize(stk_b));
-		get_moves(stk_a, stk_b, moves);
-printf("less moves = %i\t stk a move %i, stk b move %i\n", less_moves, moves[less_moves][0], moves[less_moves][1]);
+		less_moves = get_lowest_moves(moves, stksize(stk_b->nxt));
+//printf("less moves = %i\t stk a move %i, stk b move %i\nlist a:\n", less_moves, moves[less_moves][0], moves[less_moves][1]); print_list(stk_a);	printf("%slist b:%s\n", CYN, CRESET);	print_list(stk_b);  getchar();
 		make_move(stk_a, stk_b, moves[less_moves]);
 	}
-printf("FIM \n\n%slist a:%s\n", CYN, CRESET); 	print_list(stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(stk_b);
+	order_loop(stk_a);
+//printf("FIM \n\n%slist a:%s\n", CYN, CRESET); 	print_list(stk_a);		printf("%slist b:%s\n", CYN, CRESET);	print_list(stk_b);
 	i = -1;
 	while (++i < move_size)
 		free(moves[i]);
