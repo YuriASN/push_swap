@@ -7,7 +7,7 @@ int	fix_loop(t_stk *stk, int rev)
 {
 	if (rev == 0)
 	{
-		if (get_lowest(stk) <= stksize(stk->nxt) / 2)
+		if (get_lowest(stk) >= 0)
 			while (!check_order(stk))
 				rotate_stk(stk, 1);
 		else
@@ -16,11 +16,11 @@ int	fix_loop(t_stk *stk, int rev)
 	}
 	if (rev == 1)
 	{
-		if (get_lowest(stk->nxt) < stksize(stk->nxt) / 2)
-			while (get_lowest(stk->nxt) != stksize(stk->nxt) - 1)
+		if (get_lowest(stk->nxt) >= 0)
+			while (!check_order_r(stk))
 				rotate_stk(stk, 1);
 		else
-			while (get_lowest(stk->nxt) != stksize(stk->nxt) - 1)
+			while (!check_order_r(stk))
 				rotate_rev(stk, 1);
 	}
 	return (1);

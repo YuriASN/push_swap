@@ -19,14 +19,42 @@ void	stkclear(t_stk *lst)
 //Free stk before quiting.
 void	clean_quit(t_stk *stk)
 {
-printf("Clean quit!\n");
-printf("%slist:%s\n", CYN, CRESET); 	print_list(stk);
+printf("Clean quit!\n");	printf("%slist:%s\n", CYN, CRESET); 	print_list(stk);
+	
+	if (!stk)
+		return ;
 	stkclear(stk);
 	exit (0);
 }
 
+/* Gets the 1st node with value of the list.
+Returns the number of nodes on the list */
+int	stksize(t_stk *lst)
+{
+	int	count;
 
+	if (!lst)
+		return (0);
+	count = 0;
+	while (lst)
+	{
+		lst = lst->nxt;
+		++count;
+	}
+//printf("\e[0;33m\tSize of STK %i\e[0m\n", count);
+	return (count);
+}
 
+/* Returns the last node of the stack.
+Gets the 1st node (no value) of the list. */
+t_stk	*stklast(t_stk *lst)
+{
+	if (!lst)
+		return (0);
+	while (lst->nxt)
+		lst = lst->nxt;
+	return (lst);
+}
 
 
 
@@ -39,5 +67,5 @@ void	print_list(t_stk *lst){
 		ft_printf("%i\n", lst->nxt->value);
 		lst = lst->nxt;
 	}
-	printf("\n");
+	printf("%s\n", CRESET);
 }

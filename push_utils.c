@@ -5,6 +5,8 @@
 Check if stack A is completely on order and returns TRUE or FALSE. */
 int	check_order(t_stk *stack)
 {
+	if (!stack)
+		return (0);
 	if (!stack->nxt || !stack->nxt->nxt)
 		return (1);
 	stack = stack->nxt;
@@ -21,6 +23,8 @@ int	check_order(t_stk *stack)
 Check if stack B is completely on reverse order and returns TRUE or FALSE. */
 int	check_order_r(t_stk *stack)
 {
+	if (!stack)
+		return (0);
 	if (!stack->nxt || !stack->nxt->nxt)
 		return (1);
 	stack = stack->nxt;
@@ -41,9 +45,27 @@ int	get_lowest(t_stk *stk)
 	int	sv;
 	int	count;
 
+	if (!stk)
+		return (0);
 	lowest = 0;
-	count = 0;
+	count = -1;
 	sv = stk->value;
+	if (!stk->nxt)
+		return (0);
+	while (++count <= stksize(stk) / 2)
+	{
+		if (sv > stk->nxt->value)
+		{
+			sv = stk->nxt->value;
+			lowest = count + 1;
+		}
+		stk = stk->nxt;
+	}
+	if (!stk)
+		return (lowest);
+	count = (count * -1) - 1;
+	if (stksize(stk) % 2)
+		--count;
 	while (stk->nxt)
 	{
 		if (sv > stk->nxt->value)
@@ -54,34 +76,67 @@ int	get_lowest(t_stk *stk)
 		stk = stk->nxt;
 		++count;
 	}
-//printf("\033[93m\t lowest nbr = %i\t\033[m", sv);
-//printf("\033[93m\tlowest rotation = %i\n\033[m", lowest);
+//printf("Lowest = %i, in index %i\n", sv, lowest);
 	return (lowest);
 }
 
 /* Gets the 1st node with value of the list.
-Returns the number of nodes on the list */
-int	stksize(t_stk *lst)
+Return the amount of rotates or rev rotate if negative
+to get to the highest number on top. */
+int	get_highest(t_stk *stk)
 {
+	int	highest;
+	int	sv;
 	int	count;
 
-	count = 0;
-	while (lst)
+	if (!stk)
+		return (0);
+	highest = 0;
+	count = -1;
+	sv = stk->value;
+	if (!stk->nxt)
+		return (0);
+	while (++count <= stksize(stk) / 2)
 	{
-		lst = lst->nxt;
+		if (sv < stk->nxt->value)
+		{
+			sv = stk->nxt->value;
+			highest = count + 1;
+		}
+		stk = stk->nxt;
+	}
+	if (!stk)
+		return (highest);
+	count *= -1;
+	if (stksize(stk) % 2)
+		--count;
+	while (stk->nxt)
+	{
+		if (sv < stk->nxt->value)
+		{
+			sv = stk->nxt->value;
+			highest = count + 1;
+		}
+		stk = stk->nxt;
 		++count;
 	}
-//printf("\e[0;33m\tSize of STK %i\e[0m\n", count);
-	return (count);
+//printf("Highest = %i, in index %i\n", sv, highest);
+	return (highest);
 }
 
-/* Returns the last node of the stack.
-Gets the 1st node (no value) of the list. */
-t_stk	*stklast(t_stk *lst)
+/* Gets 1st node with value and returns highest value from the stack */
+int	highest_value(t_stk *stk)
 {
-	if (!lst)
+	int	high;
+
+	if (!stk)
 		return (0);
-	while (lst->nxt)
-		lst = lst->nxt;
-	return (lst);
+	high = stk->value;
+	while (stk->nxt)
+	{
+		if (high < stk->nxt->value)
+			high = stk->nxt->value;
+		stk = stk->nxt;
+	}
+	return (high);
 }

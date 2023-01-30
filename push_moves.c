@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:53:03 by ysantos-          #+#    #+#             */
-/*   Updated: 2022/11/14 20:21:35 by ysantos-         ###   ########.fr       */
+/*   Updated: 2023/01/26 23:28:25 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	swap_stk(t_stk *stack, int print)
 //printf("%sInto swap %i%s\n", RED, print, CRESET);
 	int	tmp;
 
+	if (!stack)
+		return ;
 	tmp = stack->nxt->value;
 	stack->nxt->value = stack->nxt->nxt->value;
 	stack->nxt->nxt->value = tmp;

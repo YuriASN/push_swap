@@ -51,7 +51,7 @@ static void	order_a(t_stk *stk)
 	{
 		if (stk->nxt->value > stk->nxt->nxt->value && get_lowest(stk->nxt) != 1)
 			swap_stk(stk, 1);
-		if (order_loop(stk) && get_lowest(stk->nxt) > (stksize(stk->nxt)) / 2)
+		if (order_loop(stk) && get_lowest(stk->nxt) < 0)
 			while (!check_order(stk))
 				rotate_rev(stk, 1);
 		if (!check_order(stk))
