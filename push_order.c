@@ -34,12 +34,6 @@ static void	order3a(t_stk *stk)
 		swap_stk(stk, 1);
 		rotate_stk(stk, 1);
 	}
-	else if (low == 0)
-	{
-		rotate_stk(stk, 1);
-		swap_stk(stk, 1);
-		rotate_rev(stk, 1);
-	}
 }
 
 /* Get only stk a in order when a second stk is alredy ordered */
@@ -67,10 +61,12 @@ void	get_order(t_stk *stk_a, t_stk *stk_b)
 		clean_quit(stk_a);
 	if (order_loop(stk_a))
 		clean_quit(stk_a);
-	if (order_loop_rev(stk_a) || check_order_r(stk_a))
-		change_order(stk_a, stk_b);
 	if (stksize(stk_a->nxt) > 6 || stksize(stk_a->nxt) == 5)
+	{
 		order_big(stk_a, stk_b);
+		if (order_loop_rev(stk_a) || check_order_r(stk_a))
+			change_order(stk_a, stk_b);
+	}
 	else
 	{
 		order_a(stk_a);
