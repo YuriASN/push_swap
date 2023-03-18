@@ -7,33 +7,26 @@ static void	get_a_moves(t_stk *stk_a, int b, int *moves)
 {
 	t_stk	*tmp_a;
 	int		size_a;
-	int		sv;
 
 	size_a = stksize(stk_a->nxt);
 	tmp_a = stk_a->nxt;
 	moves[0] = 0;
+	if (highest_value(stk_a->nxt) < b)
+	{
+		moves[0] = get_highest(stk_a->nxt);
+		return ;
+	}
 	if ((b < tmp_a->value && b > (stklast(tmp_a))->value) || size_a <= 1)
 		return ;
-//printf("%spassou no b %i%s\n", RED, b, CRESET);
-	while (++moves[0] <= size_a / 2)
+	while (tmp_a->nxt)
 	{
+		moves[0]++;
 		if (b > tmp_a->value && b < tmp_a->nxt->value)
-			return ;
-		sv = tmp_a->value;
+			break ;
 		tmp_a = tmp_a->nxt;
 	}
-	if (!tmp_a)
-		return ;
-	moves[0] = 0;
-	tmp_a = stklast(tmp_a);
-	while (tmp_a->value != sv)
-	{
-		--moves[0];
-		if (b < tmp_a->value && b > tmp_a->prev->value)
-			return ;
-		tmp_a = tmp_a->prev;
-	}
-	moves[0] = get_highest(stk_a->nxt) + 1;
+	if (moves[0] > size_a / 2)
+		moves[0] = (size_a - moves[0]) * -1;
 }
 
 /*	Start comparing B list to get moves of each number. */
@@ -46,6 +39,12 @@ static void	get_moves(t_stk *stk_a, t_stk *stk_b, int **moves)
 
 	tmp_b = stk_b->nxt;
 	size_b = stksize(stk_b->nxt);
+	if (size_b == 1)
+	{
+		moves[0][1] = 0;
+		get_a_moves(stk_a, tmp_b->value, moves[0]);
+		return ;
+	}
 	i = -1;
 	while (++i <= size_b / 2)
 	{
@@ -92,6 +91,7 @@ static int	get_lowest_moves(int **move, int b_size)
 		tmp = 0;
 		a = move[i][0];
 		b = move[i][1];
+//printf("move %i, a = %i b = %i\n", i, a, b);
 		while (a < 0 && b < 0)
 		{
 			++tmp;

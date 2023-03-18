@@ -19,8 +19,7 @@ void	stkclear(t_stk *lst)
 //Free stk before quiting.
 void	clean_quit(t_stk *stk)
 {
-printf("Clean quit!\n");	printf("%slist:%s\n", CYN, CRESET); 	print_list(stk);
-	
+//printf("Clean quit!\n");	printf("%slist:%s\n", CYN, CRESET); 	print_list(stk);
 	if (!stk)
 		return ;
 	stkclear(stk);
@@ -41,7 +40,6 @@ int	stksize(t_stk *lst)
 		lst = lst->nxt;
 		++count;
 	}
-//printf("\e[0;33m\tSize of STK %i\e[0m\n", count);
 	return (count);
 }
 
