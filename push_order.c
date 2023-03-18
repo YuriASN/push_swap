@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_order.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/18 16:17:44 by ysantos-          #+#    #+#             */
+/*   Updated: 2023/03/18 16:17:47 by ysantos-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -36,7 +47,7 @@ static void	order3a(t_stk *stk)
 	}
 }
 
-/* Get only stk a in order when a second stk is alredy ordered */
+/* Order stack when it's size is below 9 */
 static void	order_a(t_stk *stk)
 {
 	if (stksize(stk->nxt) == 3)
@@ -61,7 +72,7 @@ void	get_order(t_stk *stk_a, t_stk *stk_b)
 		clean_quit(stk_a);
 	if (order_loop(stk_a))
 		clean_quit(stk_a);
-	if (stksize(stk_a->nxt) > 6 || stksize(stk_a->nxt) == 5)
+	if (stksize(stk_a->nxt) > 9 || stksize(stk_a->nxt) == 5)
 	{
 		order_big(stk_a, stk_b);
 		if (order_loop_rev(stk_a) || check_order_r(stk_a))

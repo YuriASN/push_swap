@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_list_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/18 16:15:55 by ysantos-          #+#    #+#             */
+/*   Updated: 2023/03/18 16:25:11 by ysantos-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -19,7 +30,6 @@ void	stkclear(t_stk *lst)
 //Free stk before quiting.
 void	clean_quit(t_stk *stk)
 {
-//printf("Clean quit!\n");	printf("%slist:%s\n", CYN, CRESET); 	print_list(stk);
 	if (!stk)
 		return ;
 	stkclear(stk);
@@ -54,10 +64,9 @@ t_stk	*stklast(t_stk *lst)
 	return (lst);
 }
 
-
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TO BE REMOVED! */
-void	print_list(t_stk *lst){
+/* Used for debbug only. Prints the stack. */
+void	print_list(t_stk *lst)
+{
 	if (!lst->nxt)
 		return ;
 	while (lst->nxt)
@@ -65,5 +74,4 @@ void	print_list(t_stk *lst){
 		ft_printf("%i\n", lst->nxt->value);
 		lst = lst->nxt;
 	}
-	printf("%s\n", CRESET);
 }

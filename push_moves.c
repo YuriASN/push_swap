@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:53:03 by ysantos-          #+#    #+#             */
-/*   Updated: 2023/01/26 23:28:25 by ysantos-         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:26:35 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ Do nothing if there is only one or no elements.
 Print decides if, 0 don't print, 1 print A, 2 print B. */
 void	swap_stk(t_stk *stack, int print)
 {
-//printf("%sInto swap %i%s\n", RED, print, CRESET);
 	int	tmp;
 
 	if (!stack)
@@ -34,7 +33,6 @@ void	swap_stk(t_stk *stack, int print)
 // ss : Swap 2 first elements of A and B at the same time.
 void	swap_both(t_stk *stk_a, t_stk *stk_b)
 {
-//printf("%sInto swap both%s\n", RED, CRESET);
 	if (!stk_b->nxt || !stk_a->nxt || !stk_a->nxt->nxt || !stk_b->nxt->nxt)
 		return ;
 	swap_stk(stk_a, 0);
@@ -46,7 +44,6 @@ void	swap_both(t_stk *stk_a, t_stk *stk_b)
 Print decides if, 1 print A to B, 2 print B to A.*/
 static void	push_last(t_stk *st_out, t_stk *st_in, int print)
 {
-//printf("%sInto push last%s\n", RED, CRESET);
 	if (st_in->nxt)
 	{
 		st_out->nxt->nxt = st_in->nxt;
@@ -66,7 +63,6 @@ and put it at the top of IN.
 Print decides if, 1 print A to B, 2 print B to A.*/
 void	push_stk(t_stk *st_out, t_stk *st_in, int print)
 {
-//printf("%sInto push%s\n", RED, CRESET);
 	t_stk	*tmp;
 
 	if (!st_out->nxt || !st_in)
@@ -99,7 +95,6 @@ The first element becomes the last.
 Print decides if, 0 don't print, 1 print A, 2 print B. */
 void	rotate_stk(t_stk *stack, int print)
 {
-//printf("%sInto rotate%s\n", RED, CRESET);
 	t_stk	*tmp;
 
 	if (!stack->nxt || !stack->nxt->nxt)
