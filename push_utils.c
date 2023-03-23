@@ -37,46 +37,44 @@ int	check_order_r(t_stk *stack)
 	return (1);
 }
 
-/* Gets the 1st node with value of the list.
-Return the amount of rotates to get to the lowest number on top. */
+/* Gets 1st node with value and returns lowest value from the stack */
+static int	lowest_value(t_stk *stk)
+{
+	int	low;
+
+	if (!stk)
+		return (0);
+	low = stk->value;
+	while (stk->nxt)
+	{
+		if (low > stk->nxt->value)
+			low = stk->nxt->value;
+		stk = stk->nxt;
+	}
+	return (low);
+}
+
 int	get_lowest(t_stk *stk)
 {
 	int	lowest;
-	int	sv;
 	int	count;
 	int	size;
 
 	if (!stk || !stk->nxt)
 		return (0);
-	lowest = 0;
-	count = -1;
+	lowest = lowest_value(stk);
+	count = 0;
 	size = stksize(stk);
-	sv = stk->value;
-	while (++count < size / 2 && stk->nxt)
+	while (stk)
 	{
-		if (sv > stk->nxt->value)
-		{
-			sv = stk->nxt->value;
-			lowest = count + 1;
-		}
+		++count;
+		if (stk->value == lowest)
+			break ;
 		stk = stk->nxt;
 	}
-	if (!stk->nxt)
-		return (lowest);
-	if (size % 2)
-		++count;
-	count *= -1;
-	while (stk->nxt)
-	{
-		if (sv > stk->nxt->value)
-		{
-			sv = stk->nxt->value;
-			lowest = count + 1;
-		}
-		stk = stk->nxt;
-		++count;
-	}
-	return (lowest);
+	if (count > size / 2)
+		count = (size - count) * -1;
+	return (count - 1);
 }
 
 /* Gets the 1st node with value of the list.
@@ -107,23 +105,5 @@ int	get_highest(t_stk *stk)
 	}
 	if ((count * -1) > size / 2)
 		count = size - (count * -1);
-//fprintf(stderr, "highest nbr = %i\t in index to bottom %i\n", highest, count);
 	return (count);
-}
-
-/* Gets 1st node with value and returns highest value from the stack */
-int	highest_value(t_stk *stk)
-{
-	int	high;
-
-	if (!stk)
-		return (0);
-	high = stk->value;
-	while (stk->nxt)
-	{
-		if (high < stk->nxt->value)
-			high = stk->nxt->value;
-		stk = stk->nxt;
-	}
-	return (high);
 }

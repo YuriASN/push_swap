@@ -6,14 +6,14 @@
 #    By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 19:19:38 by ysantos-          #+#    #+#              #
-#    Updated: 2023/01/18 20:39:40 by ysantos-         ###   ########.fr        #
+#    Updated: 2023/03/23 16:23:24 by ysantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 SRC =	check_loops.c less_moves.c order_big.c push_list_utils.c push_moves.c \
-		push_moves2.c push_order.c push_swap.c push_utils.c
+		push_moves2.c push_order.c push_swap.c push_utils.c lowest_moves.c
 
 OBJ = $(SRC:.c=.o)
 

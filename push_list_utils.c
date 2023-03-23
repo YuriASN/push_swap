@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:15:55 by ysantos-          #+#    #+#             */
-/*   Updated: 2023/03/18 16:25:11 by ysantos-         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:40:09 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,19 @@ t_stk	*stklast(t_stk *lst)
 	return (lst);
 }
 
-/* Used for debbug only. Prints the stack. */
-void	print_list(t_stk *lst)
+/* Gets 1st node with value and returns highest value from the stack */
+int	highest_value(t_stk *stk)
 {
-	if (!lst->nxt)
-		return ;
-	while (lst->nxt)
+	int	high;
+
+	if (!stk)
+		return (0);
+	high = stk->value;
+	while (stk->nxt)
 	{
-		ft_printf("%i\n", lst->nxt->value);
-		lst = lst->nxt;
+		if (high < stk->nxt->value)
+			high = stk->nxt->value;
+		stk = stk->nxt;
 	}
+	return (high);
 }

@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:29:14 by ysantos-          #+#    #+#             */
-/*   Updated: 2023/03/18 16:29:18 by ysantos-         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:05:30 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	rotate_both(t_stk *stk_a, t_stk *stk_b);
 void	rotate_rev(t_stk *stack, int print);
 void	rotate_rev_both(t_stk *stk_a, t_stk *stk_b);
 void	b_to_a(t_stk *stk_a, t_stk *stk_b);
+int		get_lowest_moves(int **move, int b_size);
 /* -------------------- Lists functions ----------------------------------- */
 void	stkclear(t_stk *lst);
 void	clean_quit(t_stk *stk);
