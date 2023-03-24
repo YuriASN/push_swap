@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:21:07 by ysantos-          #+#    #+#             */
-/*   Updated: 2023/03/18 16:21:08 by ysantos-         ###   ########.fr       */
+/*   Updated: 2023/03/24 00:54:12 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	get_lis(t_stk *stk_a, int *lis)
 	}
 }
 
-/* Start ordering lists with  5 arguments or more than 7 */
+/* Start ordering lists with 10 arguments*/
 void	order_big(t_stk *stk_a, t_stk *stk_b)
 {
 	int	*lis;

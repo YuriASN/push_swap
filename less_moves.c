@@ -6,7 +6,7 @@
 /*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:25:45 by ysantos-          #+#    #+#             */
-/*   Updated: 2023/03/23 16:25:46 by ysantos-         ###   ########.fr       */
+/*   Updated: 2023/03/24 03:01:53 by ysantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	less_moves(t_stk *stk_a, t_stk *stk_b)
 	int	less_moves;
 
 	i = -1;
-	move_size = stksize(stk_b);
+	move_size = stksize(stk_b->nxt);
 	moves = (int **)malloc(sizeof(int **) * move_size);
 	while (++i < move_size)
 		moves[i] = ft_calloc(sizeof(int *), 2);

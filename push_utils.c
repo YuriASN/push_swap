@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ysantos- <ysantos-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/23 23:54:58 by ysantos-          #+#    #+#             */
+/*   Updated: 2023/03/24 07:34:48 by ysantos-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -38,7 +49,7 @@ int	check_order_r(t_stk *stack)
 }
 
 /* Gets 1st node with value and returns lowest value from the stack */
-static int	lowest_value(t_stk *stk)
+int	lowest_value(t_stk *stk)
 {
 	int	low;
 
@@ -54,6 +65,9 @@ static int	lowest_value(t_stk *stk)
 	return (low);
 }
 
+/* Gets the 1st node with value of the list.
+Return the amount of rotates or rev rotate if negative
+to get to the lowest number on top. */
 int	get_lowest(t_stk *stk)
 {
 	int	lowest;
