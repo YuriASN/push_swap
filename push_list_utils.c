@@ -19,10 +19,17 @@ void	stkclear(t_stk *lst)
 {
 	if (!lst)
 		return ;
+	lst = lst->nxt;
 	while (lst)
 	{
 		lst->value = 0;
+		if (!lst->nxt)
+		{
+			free (lst);
+			return ;
+		}
 		lst = lst->nxt;
+		free (lst->prev);
 	}
 	lst = NULL;
 }
